@@ -1,5 +1,5 @@
 {
-  "name": "The Trailer Bible",
+  "name": "thetrailerbible",
   "type": "module",
   "imports": {
     "#*": "./*.js"
