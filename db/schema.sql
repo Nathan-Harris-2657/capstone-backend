@@ -5,37 +5,37 @@ DROP TABLE IF EXISTS vendors;
 DROP TABLE IF EXISTS industries;
 
 CREATE TABLE users(
-id SERIAL PRIMARY KEY,
-email VARCHAR(255) UNIQUE NOT NULL,
-password_hash TEXT NOT NULL,
-role VARCHAR(50),
-saved_preferences JSONB,
-created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password TEXT NOT NULL,
+  role VARCHAR(50),
+  saved_preferences JSONB,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 
 CREATE TABLE trailers(
-id SERIAL PRIMARY KEY,
-type VARCHAR(50), -- flatbed, reefer, etc.
-make VARCHAR(100),
-model VARCHAR(100),
-industry_id INTEGER REFERENCES industries(id),
-specs JSONB, -- axle, weight, flooring, etc.
-images TEXT[],
-compliance_status JSONB,
-created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  id SERIAL PRIMARY KEY,
+  type VARCHAR(50), 
+  make VARCHAR(100),
+  model VARCHAR(100),
+  industry_id INTEGER REFERENCES industries(id),
+  specs JSONB, 
+  images TEXT[],
+  compliance_status JSONB,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE estimates(
   id SERIAL PRIMARY KEY,
-user_id INTEGER REFERENCES users(id),
-trailer_id INTEGER REFERENCES trailers(id),
-location VARCHAR(100),
-fees NUMERIC,
-tax NUMERIC,
-shipping NUMERIC,
-total_cost NUMERIC,
-saved_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  user_id INTEGER REFERENCES users(id),
+  trailer_id INTEGER REFERENCES trailers(id),
+  location VARCHAR(100),
+  fees NUMERIC,
+  tax NUMERIC,
+  shipping NUMERIC,
+  total_cost NUMERIC,
+  saved_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE industries (
@@ -46,5 +46,15 @@ CREATE TABLE industries (
   typical_specs JSONB,                       
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE vendors (
+  id SERIAL PRIMARY KEY,
+  name VARCHAR(255),
+  location VARCHAR(255),
+  contact_info JSONB,
+  ratings NUMERIC, 
+  reviews TEXT[],
+  trailer_types TEXT[] 
+)
 
 
