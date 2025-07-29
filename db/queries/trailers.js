@@ -6,9 +6,19 @@ export async function getTrailers(){
   return trailers;
 }
 
+export async function createTrailer({ type, make, model, industry_id, specs, images }) {
+  const sql = `
+    INSERT INTO trailers(type, make, model, industry_id, specs, images)
+    VALUES($1, $2, $3, $4, $5, $6)
+    RETURNING *`;
+  const {rows: [trailer]} = await db.query(sql, [type, make, model, industry_id, specs, images]);
+  return trailer;
+}
+
+
 export async function getTrailersById(id){
   const sql = `SELECT * FROM trailers WHERE id = $1`;
-  const { rows: [trailer]} = await db.query(sql, [id]);
+  const {rows: [trailer]} = await db.query(sql, [id]);
   return trailer;
 }
 

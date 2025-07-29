@@ -22,7 +22,6 @@ CREATE TABLE trailers(
   industry_id INTEGER REFERENCES industries(id),
   specs JSONB, 
   images TEXT[],
-  compliance_status JSONB,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -41,9 +40,7 @@ CREATE TABLE estimates(
 CREATE TABLE industries (
   id SERIAL PRIMARY KEY,
   name VARCHAR(100) UNIQUE NOT NULL,         
-  description TEXT,                          
-  icon_url TEXT,                             
-  typical_specs JSONB,                       
+  description TEXT,                                                                              
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
