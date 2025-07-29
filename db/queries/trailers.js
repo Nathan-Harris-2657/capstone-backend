@@ -1,13 +1,14 @@
 import db from "#db/client";
 
-export async function getTrailers() {
+export async function getTrailers(){
   const sql = `SELECT * FROM trailers`;
-  const {rows} = await db.query(sql);
-  return rows;
+  const {trailers} = await db.query(sql);
+  return trailers;
 }
 
-export async function getTrailersByMake(){
-  const sql = `SELECT make FROM trailers`;
-  const {rows} = await db.query(sql);
-  return rows;
+export async function getTrailersById(id){
+  const sql = `SELECT * FROM trailers WHERE id = $1`;
+  const { rows: [trailer]} = await db.query(sql, [id]);
+  return trailer;
 }
+
