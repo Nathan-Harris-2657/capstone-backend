@@ -6,12 +6,12 @@ export async function getTrailers(){
   return trailers;
 }
 
-export async function createTrailer({ type, make, model, industry_id, specs, images }) {
+export async function createTrailer({ type, make, model, specs, images }) {
   const sql = `
-    INSERT INTO trailers(type, make, model, industry_id, specs, images)
-    VALUES($1, $2, $3, $4, $5, $6)
+    INSERT INTO trailers(type, make, model, specs, images)
+    VALUES($1, $2, $3, $4, $5)
     RETURNING *`;
-  const {rows: [trailer]} = await db.query(sql, [type, make, model, industry_id, specs, images]);
+  const {rows: [trailer]} = await db.query(sql, [type, make, model, specs, images]);
   return trailer;
 }
 

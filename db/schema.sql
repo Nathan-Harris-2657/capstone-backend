@@ -19,7 +19,6 @@ CREATE TABLE trailers(
   type VARCHAR(50), 
   make VARCHAR(100),
   model VARCHAR(100),
-  industry_id INTEGER REFERENCES industries(id),
   specs JSONB, 
   images TEXT[],
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
