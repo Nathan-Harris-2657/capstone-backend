@@ -6,10 +6,10 @@ export async function getTrailers(){
   return trailers;
 }
 
-export async function createTrailer({ type, make, model, specs, images, price }) {
+export async function createTrailer({ type, make, model, year, specs, images, price }) {
   const sql = `
     INSERT INTO trailers(type, make, model, year, specs, images, price)
-    VALUES($1, $2, $3, $4, $5, $6)
+    VALUES($1, $2, $3, $4, $5, $6, $7)
     RETURNING *`;
   const {rows: [trailer]} = await db.query(sql, [type, make, model, year, specs, images, price]);
   return trailer;
