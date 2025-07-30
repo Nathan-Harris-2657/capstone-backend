@@ -23,7 +23,7 @@ async function seed() {
     "Flatbed",
     "Fontaine",
     "Infinity",
-    1,
+    2026,
     {
     dimensions: {
       length: "53 ft",
@@ -35,6 +35,28 @@ async function seed() {
     composition: "Combo",
     axle_configuration: "Sliding Rear Axle"
   },
-    ["https://media.sandhills.com/img.axd?id=8055871311&wid=4326209787&rwl=False&p=&ext=&w=614&h=460&t=&lp=&c=True&wt=False&sz=Max&rt=0&checksum=ZWQq%2fyEBNyeYSDQwtFS%2fdwkQ9AkfDQwxI8rPJ517TMg%3d"]
+    ["https://media.sandhills.com/img.axd?id=8055871311&wid=4326209787&rwl=False&p=&ext=&w=614&h=460&t=&lp=&c=True&wt=False&sz=Max&rt=0&checksum=ZWQq%2fyEBNyeYSDQwtFS%2fdwkQ9AkfDQwxI8rPJ517TMg%3d"],
+    49,900
+)
+
+await createTrailer(
+    "Drop Deck",
+    "Benson",
+    "524",
+    2025,
+    {
+    dimensions: {
+      length: "53 ft",
+      width: "102 in",
+      height: "36"
+    },
+    gvwr: "80,000 lbs",
+    axle_count: 2,
+    composition: "Aluminum",
+    axle_configuration: "Sliding Rear Axle"
+  },
+    ["https://media.sandhills.com/img.axd?id=7290547127&wid=4326185391&rwl=False&p=&ext=&w=614&h=460&t=&lp=&c=True&wt=False&sz=Max&rt=0&checksum=Um%2FVjiraH4YqznLAm8yY6LiLOvMrf%2FmRFsV5Ls%2BLKYw%3D"],
+    64800
+
 )
 }

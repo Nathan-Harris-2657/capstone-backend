@@ -19,8 +19,10 @@ CREATE TABLE trailers(
   type VARCHAR(50), 
   make VARCHAR(100),
   model VARCHAR(100),
+  year INTEGER NOT NULL,
   specs JSONB, 
   images TEXT[],
+  price NUMERIC,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
