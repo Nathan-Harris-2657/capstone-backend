@@ -6,7 +6,7 @@ export async function getIndustries(){
     return rows;
 }
 
-export async function createIndustry({name, description}) {
+export async function createIndustry(name, description) {
     const sql = `INSERT INTO industries(name, description)
     VALUES($1, $2)
     RETURNING *`;
