@@ -17,6 +17,6 @@ export async function createIndustry(name, description) {
 
 export async function getIndustriesById(id){
     const sql = `SELECT * FROM industries WHERE id = $1`;
-    const {rows: [industries]} = await db.query(sql, [id]);
-    return industries
+    const {rows: [industry]} = await db.query(sql, [id]);
+    return industry
 }

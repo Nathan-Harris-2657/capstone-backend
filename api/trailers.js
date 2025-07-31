@@ -5,19 +5,19 @@ export default router;
 import { getTrailers, getTrailersById } from "#db/queries/trailers";
 
 router
-    .route("/trailers")
+    .route("/")
     .get(async(req,res) =>{
         const trailers = await getTrailers();
         res.send(trailers);
     })
 
 router  
-    .route("/trailer/:id")
+    .route("/:id")
     .get(async(req,res) =>{
         const {id} = req.params;
 
         try {
-            const trailer = getTrailersById(id);
+            const trailer = await getTrailersById(id);
             if(trailer){
                 res.status(200).send(trailer)
             }
