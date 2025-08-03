@@ -6,15 +6,18 @@ import { createUser, getUserByUsernameAndPassword } from "#db/queries/users";
 import requireBody from "#middleware/requireBody";
 import { createToken } from "#utils/jwt";
 
+
 router
   .route("/register")
-  .post(requireBody(["username", "password"]), async (req, res) => {
-    const { username, password } = req.body;
-    const user = await createUser(username, password);
+  .post(requireBody(["username", "email", "password", "role"]), async (req, res) => {
+      const { username, email, password, role } = req.body;
+      const user = await createUser(username, email, password, role);
 
-    const token = await createToken({ id: user.id });
-    res.status(201).send(token);
+      const token = await createToken({ id: user.id });
+      res.status(201).send(token);
+
   });
+
 
 router
   .route("/login")
