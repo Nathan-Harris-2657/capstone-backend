@@ -2,9 +2,11 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import { createUser, getUserByUsernameAndPassword } from "#db/queries/users";
+import { createUser, getUserByUsernameAndPassword} from "#db/queries/users";
 import requireBody from "#middleware/requireBody";
 import { createToken } from "#utils/jwt";
+import  getUserFromToken  from "#middleware/getUserFromToken"
+
 
 
 router
@@ -29,3 +31,12 @@ router
     const token = await createToken({ id: user.id });
     res.send(token);
   });
+
+router
+  .route("/me")
+  .get(getUserFromToken, (req, res) => {
+    if (!req.user) return res.status(401).send({ error: "Not Allowed" });
+    const { username, email, role } = req.user;
+    res.send({ username, email, role });
+  });
+
