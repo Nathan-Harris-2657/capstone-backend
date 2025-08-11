@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import { getTrailers, getTrailersById } from "#db/queries/trailers";
+import { getTrailers, getTrailersById, createTrailer } from "#db/queries/trailers";
 
 router
     .route("/")
@@ -28,4 +28,12 @@ router
         } catch (error) {
             res.status(500).send("Failed To Get Trailers")
         }
+    })
+
+router.
+    route("/")
+    .post(async(req,res) =>{
+        const trailerData = req.body;
+        const newTrailer = await createTrailer(trailerData);
+        res.status(201).send(newTrailer);
     })
