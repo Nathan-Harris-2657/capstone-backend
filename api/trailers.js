@@ -11,6 +11,16 @@ router
         res.send(trailers);
     })
 
+
+router
+    .route("/")
+    .post(async(req,res) =>{
+        const trailerData = req.body;
+        const newTrailer = await createTrailer(trailerData);
+        res.status(201).send(newTrailer);
+    })
+
+
 router  
     .route("/:id")
     .get(async(req,res) =>{
@@ -30,10 +40,4 @@ router
         }
     })
 
-router.
-    route("/")
-    .post(async(req,res) =>{
-        const trailerData = req.body;
-        const newTrailer = await createTrailer(trailerData);
-        res.status(201).send(newTrailer);
-    })
+
