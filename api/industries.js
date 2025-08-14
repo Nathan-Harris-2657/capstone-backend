@@ -11,6 +11,14 @@ router
         res.send(industry);
     })
 
+router
+    .route("/")
+    .post(async(req,res) =>{
+        const industrieData = req.body;
+        const newindustrie = await createTrailer(industrieData);
+        res.status(201).send(newindustrie);
+    })
+
     
 router  
     .route("/:id")
