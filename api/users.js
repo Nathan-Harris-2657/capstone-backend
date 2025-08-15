@@ -40,3 +40,17 @@ router
     res.send({ username, email, role });
   });
 
+
+router
+  .route("/:id/estimates")
+  .get(async (req, res) => {
+    const { id } = req.params;
+      try {
+      const { rows } = await db.query("SELECT * FROM estimates WHERE user_id = $1", [id]);
+      res.send(rows);
+      } catch (err) {
+      console.error("Error fetching estimates:", err);
+      res.status(500).send("Failed to fetch estimates");
+    }
+  } );
+
