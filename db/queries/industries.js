@@ -6,21 +6,6 @@ export async function getIndustries(){
     return rows;
 }
 
-export async function createIndustry(name, description) {
-    const sql = `INSERT INTO industries(name, description)
-    VALUES($1, $2)
-    RETURNING *`;
-    const {rows: [industries]} = await db.query(sql, [name, description])
-    return industries
-    
-}
-
-export async function getIndustriesById(id){
-    const sql = `SELECT * FROM industries WHERE id = $1`;
-    const {rows: [industry]} = await db.query(sql, [id]);
-    return industry
-}
-
 export async function createIndustry({ name, description }) {
   const sql = `
     INSERT INTO industries(name, description)
@@ -29,3 +14,11 @@ export async function createIndustry({ name, description }) {
   const { rows: [industry] } = await db.query(sql, [name, description]);
   return industry;
 }
+
+export async function getIndustriesById(id){
+    const sql = `SELECT * FROM industries WHERE id = $1`;
+    const {rows: [industry]} = await db.query(sql, [id]);
+    return industry
+}
+
+
