@@ -6,11 +6,11 @@ export async function getVendors(){
     return rows;
 }
 
-export async function createVendor({ name, location, contact_info, ratings, reviews, trailer_types }) {
+export async function createVendor({ name, location, contact_info, ratings}) {
   const sql = `
-    INSERT INTO vendors(name, location, contact_info, ratings, reviews, trailer_types)
-    VALUES($1, $2, $3, $4, $5, $6)
+    INSERT INTO vendors(name, location, contact_info, ratings)
+    VALUES($1, $2, $3, $4)
     RETURNING *`;
-  const { rows: [vendor] } = await db.query(sql, [name, location, contact_info, ratings, reviews, trailer_types]);
+  const { rows: [vendor] } = await db.query(sql, [name, location, contact_info, ratings]);
   return vendor;
 }
