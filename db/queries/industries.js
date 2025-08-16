@@ -10,7 +10,8 @@ export async function createIndustry({ name, description }) {
   const sql = `
     INSERT INTO industries(name, description)
     VALUES($1, $2)
-    RETURNING *;`;
+    RETURNING *;
+  `;
   const { rows: [industry] } = await db.query(sql, [name, description]);
   return industry;
 }

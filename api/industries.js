@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import { getIndustries, getIndustriesById } from "#db/queries/industries";
+import { getIndustries, getIndustriesById, createIndustry } from "#db/queries/industries";
 
 router
     .route("/")
@@ -10,12 +10,9 @@ router
         const industry = await getIndustries();
         res.send(industry);
     })
-
-router
-    .route("/")
     .post(async(req,res) =>{
         const industrieData = req.body;
-        const newindustrie = await createTrailer(industrieData);
+        const newindustrie = await createIndustry(industrieData);
         res.status(201).send(newindustrie);
     })
 
