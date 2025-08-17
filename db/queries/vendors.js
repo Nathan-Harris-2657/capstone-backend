@@ -1,10 +1,14 @@
 import db from "#db/client";
 
-export async function getVendors(){
-    const sql = `SELECT name, location, contact_info, ratings FROM vendors`;
-    const {rows} = await db.query(sql);
-    return rows;
+export async function getVendors() {
+  const sql = `
+    SELECT id, name, location, contact_info, ratings
+    FROM vendors;
+  `;
+  const { rows } = await db.query(sql);
+  return rows;
 }
+
 
 export async function createVendor({ name, location, contact_info, ratings}) {
   const sql = `
