@@ -22,4 +22,14 @@ export async function getIndustriesById(id){
     return industry
 }
 
+export async function deleteIndustry(id) {
+  const sql = `
+    DELETE FROM industries
+    WHERE id = $1
+    RETURNING *;
+  `;
+  const { rows: [deletedIndustry] } = await db.query(sql, [id]);
+  return deletedIndustry;
+}
+
 

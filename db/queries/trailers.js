@@ -23,3 +23,13 @@ export async function getTrailersById(id){
   return trailer;
 }
 
+
+export async function deleteTrailer(id) {
+  const sql = `
+    DELETE FROM trailers
+    WHERE id = $1
+    RETURNING *;
+  `;
+  const { rows: [deletedTrailer] } = await db.query(sql, [id]);
+  return deletedTrailer;
+}

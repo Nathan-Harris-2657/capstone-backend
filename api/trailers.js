@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import { getTrailers, getTrailersById, createTrailer } from "#db/queries/trailers";
+import { getTrailers, getTrailersById, createTrailer, deleteTrailer } from "#db/queries/trailers";
 
 router
     .route("/")
@@ -39,5 +39,19 @@ router
             res.status(500).send("Failed To Get Trailers")
         }
     })
+    .delete(async (req, res) => {
+    const { id } = req.params;
+    try {
+      const deleted = await deleteTrailer(id);
+      if (deleted) {
+        res.status(200).send(deleted);
+      } else {
+        res.status(404).send("Trailer Not Found");
+      }
+    } catch (error) {
+      console.error("Delete error:", error);
+      res.status(500).send("Failed To Delete Trailer");
+    }
+  });
 
 

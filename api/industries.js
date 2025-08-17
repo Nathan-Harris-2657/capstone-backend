@@ -2,7 +2,7 @@ import express from "express";
 const router = express.Router();
 export default router;
 
-import { getIndustries, getIndustriesById, createIndustry } from "#db/queries/industries";
+import { getIndustries, getIndustriesById, createIndustry, deleteIndustry } from "#db/queries/industries";
 
 router
     .route("/")
@@ -35,3 +35,17 @@ router
             res.status(500).send("can not get industry")
         }
     })
+    .delete(async (req, res) => {
+    const { id } = req.params;
+
+    try {
+      const deletedIndustry = await deleteIndustry(id);
+      if (deletedIndustry) {
+        res.status(200).send(deletedIndustry);
+      } else {
+        res.status(404).send("Industry not found");
+      }
+    } catch (error) {
+      res.status(500).send("Failed to delete industry");
+    }
+  });
